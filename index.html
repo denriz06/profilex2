@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Raden Fariz | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- Particles background -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- ══════════════════════════════════════════════════════════
+     LOGIN PAGE
+     ══════════════════════════════════════════════════════════ -->
+<div id="login-page" class="page active" style="display:flex;">
+  <div class="login-scanlines"></div>
+  <div class="login-beam"></div>
+  <div class="login-beam"></div>
+  <div class="login-corner tl"></div>
+  <div class="login-corner tr"></div>
+  <div class="login-corner bl"></div>
+  <div class="login-corner br"></div>
+
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="monogram">RF</div>
+      <p>Portfolio Demo — Raden Fariz</p>
+    </div>
+
+    <div class="demo-notice">
+      ⚠️ <strong>LOGIN DEMO</strong><br>
+      Halaman ini menggunakan login demo.<br>
+      Username: <code>admin</code> &nbsp;|&nbsp; Password: <code>123</code>
+    </div>
+
+    <div class="login-field">
+      <label>Username</label>
+      <input type="text" id="login-user" placeholder="Masukkan username" autocomplete="off"/>
+    </div>
+    <div class="login-field">
+      <label>Password</label>
+      <input type="password" id="login-pass" placeholder="Masukkan password"/>
+    </div>
+    <div class="login-error" id="login-error">⚠ Username atau password salah!</div>
+    <button class="btn-primary" onclick="doLogin()">MASUK</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     MAIN APP
+     ══════════════════════════════════════════════════════════ -->
+<div id="app" style="display:none;">
+
+  <!-- ── NAVBAR ─────────────────────────────────────────────── -->
+  <nav>
+    <div class="nav-logo">RF</div>
+
+    <div class="nav-links">
+      <button class="nav-link active" onclick="showPage('home',this)">Home</button>
+      <button class="nav-link" onclick="showPage('skills',this)">Skill</button>
+      <button class="nav-link" onclick="showPage('minigame',this)">Minigame</button>
+      <button class="nav-link" onclick="showPage('ranking',this)">Peringkat</button>
+      <button class="nav-link" onclick="showPage('profile',this)">Profil</button>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="theme-switcher-wrap">
+        <span class="theme-switcher-label">Tema</span>
+        <div id="theme-switcher"></div>
+      </div>
+      <button class="btn-logout" onclick="doLogout()">⏻ Logout</button>
+    </div>
+  </nav>
+
+  <div class="main-content">
+
+    <!-- ══════════════════ HOME ══════════════════ -->
+    <div id="home-page" class="page active">
+      <div class="hero">
+        <div class="hero-grid"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-slash"></div>
+
+        <div class="hero-content">
+          <div class="hero-eyebrow reveal">Network & Web Developer</div>
+
+          <h1 class="hero-title reveal">
+            Hallo<br>Selamat<br><span class="accent">Datang</span>
+          </h1>
+
+          <p class="hero-sub reveal">
+            Web Demo <strong>Raden Fariz Attila Ahyad</strong> —
+            Alumni SMK Wikrama Bogor, passionate di jaringan komputer & web development.
+          </p>
+
+          <div class="quote-wrap reveal">
+            <div class="quote-box" id="quote-box">
+              <div id="quote-text"></div>
+              <div id="quote-author"></div>
+            </div>
+            <button class="btn-ghost" onclick="newQuote()">↺ Quote Baru</button>
+          </div>
+
+          <div class="hero-stats reveal">
+            <div class="stat">
+              <div class="stat-num">6+</div>
+              <div class="stat-label">Skill</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">2025</div>
+              <div class="stat-label">Lulus</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">∞</div>
+              <div class="stat-label">Semangat</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-badge">
+          <div class="badge-ring"></div>
+          <div class="badge-ring-inner"></div>
+          <div class="badge-center">
+            <div class="big">RF</div>
+            <div class="small">Portfolio</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════ SKILLS ══════════════════ -->
+    <div id="skills-page" class="page">
+      <div class="page-header">
+        <div class="page-label">Kemampuan Saya</div>
+        <h1 class="page-title">SKILL SET</h1>
+      </div>
+      <div class="skills-body">
+        <div class="skills-grid">
+          <div>
+            <div class="skill-section-head">Front <span>End</span></div>
+            <div id="skills-frontend"></div>
+          </div>
+          <div>
+            <div class="skill-section-head">Back <span>End</span></div>
+            <div id="skills-backend"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════ MINIGAME ══════════════════ -->
+    <div id="minigame-page" class="page">
+      <div class="page-header">
+        <div class="page-label">Mini Game</div>
+        <h1 class="page-title">TYPE GAME</h1>
+      </div>
+      <div class="game-body">
+
+        <!-- HUD -->
+        <div class="game-hud">
+          <div class="hud-stat">
+            <div class="hud-val" id="gs-score">0</div>
+            <div class="hud-label">Score</div>
+          </div>
+          <div class="hud-stat">
+            <div class="hud-val" id="gs-lives">♥♥♥♥♥</div>
+            <div class="hud-label">Nyawa</div>
+          </div>
+          <div class="hud-stat">
+            <div class="hud-val" id="gs-level">1</div>
+            <div class="hud-label">Level</div>
+          </div>
+          <div class="hud-stat">
+            <div class="hud-val" id="gs-combo">x1</div>
+            <div class="hud-label">Combo</div>
+          </div>
+        </div>
+
+        <!-- Arena -->
+        <div id="game-arena">
+          <canvas id="game-laser"></canvas>
+
+          <!-- Game Over overlay -->
+          <div id="game-over-screen">
+            <h2>GAME OVER</h2>
+            <div class="go-stats">
+              <div class="go-stat">
+                <div class="go-val" id="game-final-score">0</div>
+                <div class="go-label">Score</div>
+              </div>
+              <div class="go-stat">
+                <div class="go-val" id="game-final-level">1</div>
+                <div class="go-label">Level</div>
+              </div>
+            </div>
+            <button class="btn-primary" style="width:auto;padding:12px 40px;" onclick="TG.start()">MAIN LAGI</button>
+          </div>
+        </div>
+
+        <!-- Input -->
+        <div id="game-input-row">
+          <input type="text" id="game-input" placeholder="Ketik kata di sini..." autocomplete="off" spellcheck="false" disabled/>
+          <button id="game-start-btn" onclick="TG.start()">START</button>
+        </div>
+
+        <!-- Instructions -->
+        <div class="game-instructions">
+          <strong>Cara Main:</strong> Tekan START lalu ketik kata yang jatuh sebelum menyentuh batas bawah.
+          Kata otomatis terkunci saat kamu mulai mengetik. Makin cepat = combo makin tinggi = score makin besar!
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════ RANKING ══════════════════ -->
+    <div id="ranking-page" class="page">
+      <div class="page-header">
+        <div class="page-label">Data Dunia</div>
+        <h1 class="page-title">PERINGKAT KEUANGAN DUNIA</h1>
+      </div>
+      <div class="ranking-body">
+        <div class="ranking-grid" id="ranking-grid"></div>
+        <div class="ranking-note">
+          📊 Data GDP Nominal berdasarkan IMF World Economic Outlook 2024. Satuan: Triliun USD.
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════ PROFIL ══════════════════ -->
+    <div id="profile-page" class="page">
+      <div class="page-header">
+        <div class="page-label">Tentang Saya</div>
+        <h1 class="page-title">PROFIL</h1>
+      </div>
+      <div class="profile-body">
+        <div class="profile-card reveal">
+          <div class="profile-avatar">RF</div>
+          <div class="profile-name">RADEN FARIZ<br>ATTILA AHYAD</div>
+          <div class="profile-role">Network & Web Developer</div>
+
+          <div class="profile-divider"></div>
+
+          <div class="profile-grid">
+            <div>
+              <div class="pf-label">Nama Lengkap</div>
+              <div class="pf-value">Raden Fariz Attila Ahyad</div>
+            </div>
+            <div>
+              <div class="pf-label">Sekolah</div>
+              <div class="pf-value">SMK Wikrama Bogor</div>
+            </div>
+            <div>
+              <div class="pf-label">Jurusan</div>
+              <div class="pf-value">Teknik Jaringan Komputer & Telekomunikasi</div>
+            </div>
+            <div>
+              <div class="pf-label">Tahun Lulus</div>
+              <div class="pf-value">2025</div>
+            </div>
+          </div>
+
+          <div class="profile-divider"></div>
+
+          <div class="pf-label">Keahlian</div>
+          <div class="tag-list">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Python</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Full-Stack</span>
+            <span class="tag">Networking</span>
+            <span class="tag">TCP/IP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end main-content -->
+</div><!-- end app -->
+
+<!-- Scripts — urutan penting! -->
+<script src="data.js"></script>
+<script src="theme.js"></script>
+<script src="game.js"></script>
+<script src="main.js"></script>
+<script>
+  // Init theme immediately on load
+  initTheme();
+</script>
+</body>
+</html>
